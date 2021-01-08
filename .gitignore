@@ -3,5 +3,5 @@ dist/
 gitignoreFiles/
 .vscode/
 
-package.lock.json
+package-lock.json
 yarn.lock
