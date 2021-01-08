@@ -1,0 +1,31 @@
+{
+  "name": "@micro-assemblers/pipe",
+  "version": "1.0.0",
+  "description": "Communication mechanism between different components",
+  "main": "index.js",
+  "scripts": {
+    "build": "cross-env BUILDEMODE=development webpack"
+  },
+  "keywords": [
+    "rxjs",
+    "pipe"
+  ],
+  "author": "colin chiu",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.20",
+    "rxjs": "^6.6.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@types/lodash": "^4.14.167",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.3",
+    "ts-loader": "^8.0.14",
+    "typescript": "^4.1.3",
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.1"
+  }
+}
