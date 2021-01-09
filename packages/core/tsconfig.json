@@ -6,9 +6,9 @@
         "lib": ["DOM","ES2015","ESNext", "ES2015.Generator"],
         "moduleResolution": "node",
         "module": "CommonJS",
-        "outDir": "tsout",
-        "sourceMap": true,
-        "downlevelIteration": true
+        "outDir": "dist",
+        "downlevelIteration": true,
+        "baseUrl": "./",
     },
     "ts-node": {
         "compilerOptions": {
@@ -18,5 +18,9 @@
     },
     "exclude": [
         "node_modules"
+    ],
+    "include": [
+        "./src/**/*.ts",
+        "../../packages/pipe/src"
     ]
 }

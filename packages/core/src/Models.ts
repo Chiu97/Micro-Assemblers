@@ -1,4 +1,4 @@
-import { StateDispatcher, MapAfterDispatchState, TunnelStateInSubject } from '@micro-assemblers/pipe'
+import { StateDispatcher, MapAfterDispatchState, TunnelStateInSubject } from '../../pipe/src/index'
 
 export enum NodeType {
     LAYOUT,
@@ -39,5 +39,7 @@ export const isComponentNode = (node: unknown) => {
 
     return false
 }
+
+export const assertTo = <T>(v: unknown) => v as T 
 
 export type Traversable = LayoutNode|BaseComponentNode

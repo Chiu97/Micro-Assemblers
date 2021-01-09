@@ -25,10 +25,10 @@ const r_buttonData = () => {
     }
 }
 
-const r_dropdownData = () => Array.from({length: r_num(4)}, () => ({...r_textData(), id: r_id(), isSelected: r_boolean()}))
+const r_dropdownData = () => Array.from({length: r_num(3)+1}, () => ({...r_textData(), id: r_id(), isSelected: r_boolean()}))
 
 const r_cmpModalTree = () => {
-    const sz = r_num(3)
+    const sz = r_num(3) + 1
     const rootChildren = Array.from({length: sz}, () => r_layoutNode())
     const rootLayout: LayoutNode = {
         _id: r_id(),
@@ -40,7 +40,7 @@ const r_cmpModalTree = () => {
 }
 
 const r_layoutNode = (): LayoutNode => {
-    const createRandomNumsOfComponentNode = () => Array.from({length: r_num(3)}, () => r_componentNode())
+    const createRandomNumsOfComponentNode = () => Array.from({length: r_num(3)+1}, () => r_componentNode())
     return {
         _id: r_id(),
         $$type: NodeType.LAYOUT,
