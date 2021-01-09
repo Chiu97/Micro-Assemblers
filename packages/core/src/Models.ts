@@ -1,14 +1,9 @@
 import { StateDispatcher, MapAfterDispatchState, TunnelStateInSubject } from '@micro-assemblers/pipe'
-/**
- * @description 元数据的模型, 类似HTML的树型结构
- */
-export interface MetaData {
-    
-}
 
 export interface BaseComponentNode {
     _id: string
-    cmpName: string
+    cmpName: string,
+    rawData?: any
 }
 
 export type StateMachine<S> = {

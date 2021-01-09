@@ -11,9 +11,10 @@
   "author": "colin chiu",
   "license": "ISC",
   "dependencies": {
+    "@types/faker": "^5.1.5",
+    "faker": "^5.1.0",
     "lodash": "^4.17.20",
-    "rxjs": "^6.6.3",
-    "@micro-assemblers/pipe": "1.0.0"
+    "rxjs": "^6.6.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
