@@ -7,15 +7,15 @@ export type TunnelStateOutSubject<T> = Subject<T>
 // Type TunnelStateInSubject is where component finally receive it's controlled state.
 export type TunnelStateInSubject<T> = Subject<T>
 // Type alias for component state map, for flexibility usage
-type MapBeforeComponentTakesIn<T> = (val: T) => T
+export type MapAfterDispatchState<T> = (val: T) => T
 
 export function SubjectFactory<T>() {
     return new Subject<T>()
 }
 
 
-export type CreateComponentContolledState = <T>(initailControlledState: T, bizExtend?: MapBeforeComponentTakesIn<T>) => [StateDispatcher<T>, TunnelStateInSubject<T>]
-const createComponentContolledState: CreateComponentContolledState = <T>(initailControlledState: T, bizExtend?: MapBeforeComponentTakesIn<T>) => {
+export type CreateComponentContolledState = <T>(initailControlledState: T, bizExtend?: MapAfterDispatchState<T>) => [StateDispatcher<T>, TunnelStateInSubject<T>]
+const createComponentContolledState: CreateComponentContolledState = <T>(initailControlledState: T, bizExtend?: MapAfterDispatchState<T>) => {
     const stateDispatcher$: StateDispatcher<T> = SubjectFactory()
     const stateOut$: TunnelStateOutSubject<T> = SubjectFactory()
     const stateIn$: TunnelStateInSubject<T> = SubjectFactory()

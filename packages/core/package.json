@@ -1,20 +1,19 @@
 {
-  "name": "@micro-assemblers/pipe",
+  "name": "@micro-assemblers/core",
   "version": "1.0.0",
-  "description": "Communication mechanism between different components",
-  "main": "./src/index.ts",
-  "scripts": {
-    "build": "cross-env BUILDEMODE=development webpack"
-  },
+  "description": "javascript runtime component assembler(for paas web fundermantal)",
+  "main": "index.js",
+  "scripts": {},
   "keywords": [
     "rxjs",
-    "pipe"
+    "paas"
   ],
   "author": "colin chiu",
   "license": "ISC",
   "dependencies": {
     "lodash": "^4.17.20",
-    "rxjs": "^6.6.3"
+    "rxjs": "^6.6.3",
+    "@micro-assemblers/pipe": "1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
