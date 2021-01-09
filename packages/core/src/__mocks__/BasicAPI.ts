@@ -1,5 +1,5 @@
-import faker from 'faker'
-import { BaseComponentNode, LayoutNode } from '../Models'
+import * as faker from 'faker'
+import { BaseComponentNode, LayoutNode, NodeType } from '../Models'
 const r_boolean = faker.random.boolean
 const r_num = faker.random.number
 const r_id = faker.random.uuid
@@ -25,27 +25,25 @@ const r_buttonData = () => {
     }
 }
 
-const r_dropdownData = (): Object[] => {
-    const maxSz = r_num(5)
-    const arr = []
-    for (let i=0; i<maxSz; i++) {
-        arr.push({...r_textData(), id: r_id()})
-    }
-    return arr
-}
-
+const r_dropdownData = () => Array.from({length: r_num(4)}, () => ({...r_textData(), id: r_id(), isSelected: r_boolean()}))
 
 const r_cmpModalTree = () => {
-    faker.random.arrayElement(componentNames)
-    for (let i=0; i<1; i++) {
-        console.log(r_layoutNode())
+    const sz = r_num(3)
+    const rootChildren = Array.from({length: sz}, () => r_layoutNode())
+    const rootLayout: LayoutNode = {
+        _id: r_id(),
+        $$type: NodeType.LAYOUT,
+        layoutName: 'RootLayoutNode',
+        children: rootChildren
     }
+    return rootLayout
 }
 
 const r_layoutNode = (): LayoutNode => {
     const createRandomNumsOfComponentNode = () => Array.from({length: r_num(3)}, () => r_componentNode())
     return {
         _id: r_id(),
+        $$type: NodeType.LAYOUT,
         layoutName: r_layoutName(),
         children: createRandomNumsOfComponentNode()
     }
@@ -56,11 +54,12 @@ const r_componentNode = (): BaseComponentNode => {
     return {
         _id: r_id(),
         cmpName,
-        rawData: r_componentRawdataByComponentName(cmpName)
+        $$type: NodeType.COMPONENT,
+        payload: r_componentpayloadByComponentName(cmpName)
     }
 }
 
-const r_componentRawdataByComponentName = (cmpName: string): Object => {
+const r_componentpayloadByComponentName = (cmpName: string): Object => {
     switch (cmpName) {
         case 'Text':
             return r_textData()
@@ -73,8 +72,9 @@ const r_componentRawdataByComponentName = (cmpName: string): Object => {
     }
 }
 
-export const fetchDataWithoutParams = () => {
-    
+export const fetchDataWithoutParams = (ms=0) => {
+    return new Promise<LayoutNode>(res => {
+        setTimeout(() => res(r_cmpModalTree()), ms)
+    })
 }
 
-r_cmpModalTree()

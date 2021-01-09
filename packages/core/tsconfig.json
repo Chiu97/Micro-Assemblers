@@ -3,12 +3,20 @@
         "target": "ES6",
         "allowJs": false,
         "esModuleInterop": true,
-        "lib": ["DOM","ES2015","ESNext"],
-        "moduleResolution": "node"
+        "lib": ["DOM","ES2015","ESNext", "ES2015.Generator"],
+        "moduleResolution": "node",
+        "module": "CommonJS",
+        "outDir": "tsout",
+        "sourceMap": true,
+        "downlevelIteration": true
     },
     "ts-node": {
         "compilerOptions": {
-            "esModuleInterop": true
+            "esModuleInterop": true,
+            "downlevelIteration": true
         }
-    }
+    },
+    "exclude": [
+        "node_modules"
+    ]
 }

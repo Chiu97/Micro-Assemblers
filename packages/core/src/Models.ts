@@ -1,9 +1,15 @@
 import { StateDispatcher, MapAfterDispatchState, TunnelStateInSubject } from '@micro-assemblers/pipe'
 
+export enum NodeType {
+    LAYOUT,
+    COMPONENT
+}
+
 export interface BaseComponentNode {
     _id: string
     cmpName: string,
-    rawData?: any
+    $$type: NodeType.COMPONENT,
+    payload?: any
 }
 
 export type StateMachine<S> = {
@@ -20,7 +26,18 @@ interface LayoutProps {}
 
 export interface LayoutNode {
     _id: string
+    $$type: NodeType.LAYOUT
     layoutName: string
-    children: (WithStateComponentNode<any>|BaseComponentNode)[],
+    children: (WithStateComponentNode<any>|BaseComponentNode|LayoutNode)[],
     layoutProps?: LayoutProps
 }
+
+export const isComponentNode = (node: unknown) => {
+    if (node && typeof node == 'object' && '$$type' in node) {
+        return node['$$type']== NodeType.COMPONENT
+    }
+
+    return false
+}
+
+export type Traversable = LayoutNode|BaseComponentNode
