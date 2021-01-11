@@ -33,8 +33,8 @@ export interface LayoutNode {
 }
 
 export const isComponentNode = (node: unknown) => {
-    if (node && typeof node == 'object' && '$$type' in node) {
-        return node['$$type']== NodeType.COMPONENT
+    if (node && typeof node == 'object' && node.hasOwnProperty('$$type')) {
+        return (node as any)['$$type'] == NodeType.COMPONENT
     }
 
     return false

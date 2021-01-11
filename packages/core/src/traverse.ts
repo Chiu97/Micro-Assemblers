@@ -1,5 +1,5 @@
 
-import { Traversable } from "./Models"
+import { LayoutNode, Traversable } from "./Models"
 import R from 'ramda'
 
 const traverseIterator = function* (node: Traversable): IterableIterator<Traversable> {
@@ -10,7 +10,7 @@ const traverseIterator = function* (node: Traversable): IterableIterator<Travers
     const putNodeChildrenToPending = (node: Traversable): [Traversable, Traversable[]] => {
         let nextPending = pending.slice(1)
         if (node&&node.hasOwnProperty('children')) {
-            nextPending = nextPending.concat(node['children'])
+            nextPending = nextPending.concat((node as LayoutNode)['children'])
         }
         return [node, nextPending]
     }
