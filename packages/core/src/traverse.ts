@@ -1,6 +1,6 @@
 
 import { LayoutNode, Traversable } from "./Models"
-import R from 'ramda'
+import * as R from 'ramda'
 
 const traverseIterator = function* (node: Traversable): IterableIterator<Traversable> {
     let nextNode = node

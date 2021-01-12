@@ -1,4 +1,4 @@
 ### MICRO_ASSEMBLERS
 
-#### DESC
-Mechanism to build web page base on meta-data.
+#### DESCRIPTION
+**LOW CODE** web app platform base on RXJS.

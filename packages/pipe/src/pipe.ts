@@ -39,11 +39,11 @@ const createComponentContolledState: CreateComponentContolledState = <T>(initail
 
 
 // not important functions, for testing usage only
-export const getById = <T>(id: string) => document.querySelector(id)
-export const getRXBtn = () => getById('#rxjs-onlyone-button') as HTMLButtonElement
-export const getRXNextBtn = () => getById('#rxjs-next-button') as HTMLButtonElement
-export const getSpan1 = () => getById('#rxjs-span-1') as HTMLSpanElement
-export const getRandomBtn = () => getById('#rxjs-random-button') as HTMLButtonElement
+// export const getById = <T>(id: string) => document.querySelector(id)
+// export const getRXBtn = () => getById('#rxjs-onlyone-button') as HTMLButtonElement
+// export const getRXNextBtn = () => getById('#rxjs-next-button') as HTMLButtonElement
+// export const getSpan1 = () => getById('#rxjs-span-1') as HTMLSpanElement
+// export const getRandomBtn = () => getById('#rxjs-random-button') as HTMLButtonElement
 
 export {
     createComponentContolledState

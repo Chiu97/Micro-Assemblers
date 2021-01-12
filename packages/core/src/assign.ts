@@ -7,7 +7,7 @@ import traverseIterator from './traverse'
 import { createComponentContolledState } from "../../pipe/src/index"
 import { assertTo, BaseComponentNode, isComponentNode, LayoutNode, StateMachine, WithStateComponentNode, Traversable } from "./Models"
 import { fetchDataWithoutParams } from './__mocks__/BasicAPI'
-import R from 'ramda'
+import * as R from 'ramda'
 import { iteratorToArray } from './utils'
 
 const identity = (v: unknown) => v

@@ -9,7 +9,8 @@ export interface BaseComponentNode {
     _id: string
     cmpName: string,
     $$type: NodeType.COMPONENT,
-    payload?: any
+    payload?: any,
+    el?: HTMLElement
 }
 
 export type StateMachine<S> = {
@@ -35,6 +36,14 @@ export interface LayoutNode {
 export const isComponentNode = (node: unknown) => {
     if (node && typeof node == 'object' && node.hasOwnProperty('$$type')) {
         return (node as any)['$$type'] == NodeType.COMPONENT
+    }
+
+    return false
+}
+
+export const isLayoutNode = (node: unknown) => {
+    if (node && typeof node == 'object' && node.hasOwnProperty('$$type')) {
+        return (node as any)['$$type'] == NodeType.LAYOUT
     }
 
     return false

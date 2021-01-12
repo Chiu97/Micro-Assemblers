@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "allowJs": false,
+        "esModuleInterop": true,
+        "lib": ["DOM","ES2015","ESNext"],
+        "moduleResolution": "node",
+        "outDir": "dist",
+    },
+    "ts-node": {
+        "compilerOptions": {
+            "esModuleInterop": true
+        }
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}
