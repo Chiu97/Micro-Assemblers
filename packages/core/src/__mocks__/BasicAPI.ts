@@ -7,9 +7,9 @@ const r_word = faker.random.word
 const r_el = faker.random.arrayElement
 const r_cmpName = () => r_el(componentNames)
 const r_layoutName = () => r_el(layoutNames)
-const componentNames = ["Text", "Button", "Dropdown"]
+const componentNames = ["Text", "Button", "DropDown"]
 const layoutNames = ["Center", "Default"]
-const buttonTypes = ["Primary", "Secendary"]
+const buttonTypes = ["Primary", "Secondary"]
 
 const r_textData = () => {
     return {

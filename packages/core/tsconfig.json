@@ -23,6 +23,6 @@
     ],
     "include": [
         "./src/**/*.ts",
-        "../../packages/pipe/src"
+        "../../packages/pipe/src",
     ]
 }

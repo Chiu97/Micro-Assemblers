@@ -1,16 +1,16 @@
+import { getComponentStateMap } from './utils';
 // Data dispatch to corresponsive component, different component should hold their init data.
 // It's completely non-sense if you keep all controlled data in a global reposity like redux.Which is simple but might comes with perf problem.
 // If you make greate model, the web app should work with low or even no extra code(Extension Code).
 // @todo Provide a global data storge api, for data that should be share among different components.
 
-import traverseIterator from './traverse'
+import generateLayoutNodeIterator from './traverse'
 import { createComponentContolledState } from "../../pipe/src/index"
-import { assertTo, BaseComponentNode, LayoutNode, StateMachine, WithStateComponentNode, Traversable } from "./Models"
+import { assertTo, BaseComponentNode, LayoutNode, StateMachine, WithStateComponentNode, Traversable, isComponentNode } from "./Models"
 import * as R from 'ramda'
 import { iteratorToArray } from './utils'
-import { fetchDataWithoutParams } from './__mocks__/BasicAPI'
 
-const componentStateMap = new Map<string, WithStateComponentNode<any>>()
+const componentStateMap = getComponentStateMap()
 const componentStateMapGuard = {
     set(_id: string, state: any) {
         if (componentStateMap.has(_id)) {
@@ -37,6 +37,7 @@ export const setupComponentNodeMap = (dataSource: LayoutNode) => {
     }
 
     const effect_setComponentStateMapGuard = (node: WithStateComponentNode<any>) => {
+        if (!isComponentNode(node)) return
         const { _id } = node
         componentStateMapGuard.set(_id, node)
     }
@@ -49,7 +50,7 @@ export const setupComponentNodeMap = (dataSource: LayoutNode) => {
     )
     
     const treeArray = R.pipe(
-        traverseIterator,
+        generateLayoutNodeIterator,
         iteratorToArray
     )(dataSource)
 

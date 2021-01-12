@@ -3,7 +3,7 @@ import { isLayoutNode, LayoutNode, Traversable } from "./Models"
 import { effect_createLayoutElement } from '../../layout/src/createElement'
 import * as R from 'ramda'
 
-const traverseIterator = function* (node: Traversable): IterableIterator<Traversable> {
+const generateLayoutNodeIterator = function* (node: Traversable): IterableIterator<Traversable> {
     let nextNode = node
     let pending: Traversable[] = [node]
 
@@ -48,4 +48,4 @@ const traverseIterator = function* (node: Traversable): IterableIterator<Travers
     } while (nextNode)
 }
 
-export default traverseIterator
+export default generateLayoutNodeIterator
