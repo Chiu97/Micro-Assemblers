@@ -5,12 +5,11 @@
 
 import traverseIterator from './traverse'
 import { createComponentContolledState } from "../../pipe/src/index"
-import { assertTo, BaseComponentNode, isComponentNode, LayoutNode, StateMachine, WithStateComponentNode, Traversable } from "./Models"
-import { fetchDataWithoutParams } from './__mocks__/BasicAPI'
+import { assertTo, BaseComponentNode, LayoutNode, StateMachine, WithStateComponentNode, Traversable } from "./Models"
 import * as R from 'ramda'
 import { iteratorToArray } from './utils'
+import { fetchDataWithoutParams } from './__mocks__/BasicAPI'
 
-const identity = (v: unknown) => v
 const componentStateMap = new Map<string, WithStateComponentNode<any>>()
 const componentStateMapGuard = {
     set(_id: string, state: any) {
@@ -30,7 +29,7 @@ export const setupComponentNodeMap = (dataSource: LayoutNode) => {
         const { payload } = node
         const [updateState, stateIn$] = createComponentContolledState(payload)
         let stateMachine: StateMachine<any> = {
-            mapState: identity,
+            mapState: R.identity,
             updateState,
             stateIn$
         }
@@ -43,17 +42,22 @@ export const setupComponentNodeMap = (dataSource: LayoutNode) => {
     }
 
     const assertToBaseComponentNode = (node: Traversable) => assertTo<BaseComponentNode>(node)
-
-    const main = R.pipe(
-        traverseIterator,
-        iteratorToArray,
-        R.filter(isComponentNode),
+    const componentAttachStatePipeline = R.pipe(
         R.map(assertToBaseComponentNode),
         R.map(attachStateMachine),
         R.map(R.tap(effect_setComponentStateMapGuard))
     )
+    
+    const treeArray = R.pipe(
+        traverseIterator,
+        iteratorToArray
+    )(dataSource)
 
-    return main(dataSource)
+    const main = R.pipe(
+        componentAttachStatePipeline
+    )
+
+    return main(treeArray)
 }
 
 const TestComponentStateMachineAttatch = async () => {

@@ -1,9 +1,5 @@
 import * as R from 'ramda'
-
-const createEl = <T>(tagName) => {
-    const el = document.createElement(tagName) as T
-    return el
-}
+import { createEl } from './createElement'
 
 const effect_addCls = (classes: string[], el: HTMLElement) => {
     classes.forEach(cls => el.classList.add(cls))
@@ -12,7 +8,7 @@ const effect_addCls = (classes: string[], el: HTMLElement) => {
 const c_addCls = R.curry(effect_addCls)
 
 interface LayoutGenerator<T> {
-    (): T
+    (params?: any): T
 }
 
 type DIVLayout = LayoutGenerator<HTMLDivElement>
@@ -26,16 +22,18 @@ const BaseElGenerator = <T>(classes: string[], tagName='div') => {
     return defaultLayout(tagName) as T
 }
 
+const Root: DIVLayout = () => BaseElGenerator(['Layout__Root'])
+
 const Default: DIVLayout = () => BaseElGenerator(['Layout__Default'])
 
 const Center: DIVLayout = () => BaseElGenerator(['Layout__Center'])
 
 interface Layouter {
-    [key: string]: () => HTMLElement
+    [key: string]: (params?: any) => HTMLElement
 }
 
-const LayoutConfig = {
-    Default, Center
+const LayoutConfig: Layouter  = {
+    Default, Center, Root
 }
 
 const Layouts: Layouter = {}

@@ -10,6 +10,7 @@ export interface BaseComponentNode {
     cmpName: string,
     $$type: NodeType.COMPONENT,
     payload?: any,
+    parent?: LayoutNode,
     el?: HTMLElement
 }
 
@@ -23,14 +24,14 @@ export interface WithStateComponentNode<S> extends BaseComponentNode {
     stateMachine: StateMachine<S>
 }
 
-interface LayoutProps {}
-
 export interface LayoutNode {
     _id: string
     $$type: NodeType.LAYOUT
     layoutName: string
     children: (WithStateComponentNode<any>|BaseComponentNode|LayoutNode)[],
-    layoutProps?: LayoutProps
+    domEl?: HTMLElement,
+    layoutProps?: any,
+    parent?: LayoutNode|null
 }
 
 export const isComponentNode = (node: unknown) => {

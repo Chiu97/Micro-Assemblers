@@ -33,7 +33,7 @@ const r_cmpModalTree = () => {
     const rootLayout: LayoutNode = {
         _id: r_id(),
         $$type: NodeType.LAYOUT,
-        layoutName: 'RootLayoutNode',
+        layoutName: 'Layout__Root',
         children: rootChildren
     }
     return rootLayout
