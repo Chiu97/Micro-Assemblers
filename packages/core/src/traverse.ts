@@ -17,10 +17,13 @@ const traverseIterator = function* (node: Traversable): IterableIterator<Travers
     const pullLayoutChildren = (node: Traversable): [Traversable, Traversable[]] => {
         let layoutPNode = node as LayoutNode
         const { children } = layoutPNode
+
         const childrenPending: Traversable[] = children.map(cNode => ({
             ...cNode,
             parent: layoutPNode
         }))
+        layoutPNode.children = childrenPending
+        
         const nextPending = pending.slice(1).concat(childrenPending)
         return [node, nextPending]
     }

@@ -1,1 +1,1 @@
-import  './assign'
+import  './core'

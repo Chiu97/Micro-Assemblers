@@ -17,9 +17,6 @@ export const effect_createLayoutElement = (node: Traversable): HTMLElement|null 
     layoutNode.domEl = layoutEl
     const parentDomEl = R.path(['parent', 'domEl'], layoutNode) as HTMLElement
     if (parentDomEl) {
-        console.log({
-            parentDomEl
-        })
         parentDomEl.appendChild(layoutEl)
     }
 

@@ -57,12 +57,10 @@ export const setupComponentNodeMap = (dataSource: LayoutNode) => {
         componentAttachStatePipeline
     )
 
-    return main(treeArray)
+    const components = main(treeArray)
+    const rootNode= treeArray[0] as LayoutNode
+    return {
+        components,
+        rootNode
+    }
 }
-
-const TestComponentStateMachineAttatch = async () => {
-    const dataSource = await fetchDataWithoutParams()
-    setupComponentNodeMap(dataSource)
-}
-
-TestComponentStateMachineAttatch()
